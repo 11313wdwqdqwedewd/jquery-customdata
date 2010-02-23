@@ -8,50 +8,46 @@
  *   http://www.gnu.org/licenses/gpl.html
  */
 
-
 (function($, undefined) {
   
-  var re_data = /^data\-(.+)$/;
+  var RE_DATA = /^data\-(.+)$/;
   
-  var convert = function(string){
-    return string ? eval("(" + string + ")") : string;
-  };
-  
-  var attributes = function(elem){
-    
-    var data = {};
-    
-    if (!elem || elem.nodeType !== 1) {
-      return data;
+  function camelize(string) {
+    var parts = string.split('-'), len = parts.length;
+    if (len == 1) { return parts[0]; }
+
+    var camelized = string.charAt(0) == '-'
+      ? parts[0].charAt(0).toUpperCase() + parts[0].substring(1)
+      : parts[0];
+
+    for (var i = 1; i < len; i++) {
+      camelized += parts[i].charAt(0).toUpperCase() + parts[i].substring(1);
     }
 
-    $.each(elem.attributes, function(index, attr){
-      if (re_data.test(attr.nodeName)){
-        data[attr.nodeName.match(re_data)[1]] = convert(attr.nodeValue);
-      }
-    });
-    
-    return data;
+    return camelized;
   }
   
+  var attributes = function(elem){
+    var data = {};
+    if (elem && elem.nodeType === 1) { 
+      $.each(elem.attributes, function(index, attr){
+        if (RE_DATA.test(attr.nodeName)){
+          key = attr.nodeName.match(RE_DATA)[1];
+          data[camelize(key)] = attr.nodeValue;
+        }
+      });
+    }
+    return data;
+  };
+  
   $.extend({
-    metadata: {
-      get: function(elem){
-        var data = $(elem).data("metadata");
-
-        // returned cached data if it already exists
-        if (data) { return data; }
-      
-        data = $.extend(
-          {},
-          convert($(elem).find("script[type='data']").html()),
-          convert($(elem).attr("data")),
-          attributes(elem)
-        );
-      
+    metadata: function(elem, key){
+      var data = $(elem).data("metadata");
+      if (!data) {
+        data = attributes(elem);
         $(elem).data("metadata", data);
-        return data;
       }
+      return key ? data[key] : data;
     }
   });
 
@@ -62,8 +58,8 @@
    * @descr Returns element's metadata object
    * @cat Plugins/Metadata
    */
-  $.fn.metadata = function(){
-    return $.metadata.get(this[0]);
+  $.fn.metadata = function(key){
+    return $.metadata(this[0], key);
   };
 
 })(jQuery);

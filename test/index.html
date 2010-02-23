@@ -16,53 +16,11 @@
 <h2 id="userAgent"></h2>
 
 <div id="main" style="display: none">
-	<ol id="one">
-		<li data="{foo:'bar', bar:'baz', arr:[1,2]}">Some stuff</li>
-		<li data="{test:'bar', bar:'baz'}">Some stuff</li>
-		<li data="{zoooo:'bar', bar:{test:'baz'}}">Some stuff</li>
-		<li data="{number:true, stuff:[2,8]}">Some stuff</li>
-	</ol>
-
-	<ol id="two">
-		<li data="{foo:'bar', bar:'baz'}">
-			<script type="data">
-				{foo:'not-foo', arr:[1,2]}
-			</script>
-		</li>
-		<li data="">
-			<script type="data">
-				{test:'bar', bar:'baz'}
-			</script>
-		</li>
-		<li data-zoooo="'bar'" data="{bar:{test:'baz'}}">
-			<script type="data"></script>
-		</li>
-		<li data="{}">
-			<script type="data">
-				{number:true, stuff:[2,8]}
-			</script>
-		</li>
-	</ol>
-	
-	<ol id="three">
-		<li><script type="data">{foo:'bar', bar:'baz', arr:[1,2]}</script>Some stuff</li>
-		<li><script type="data">{test:'bar', bar:'baz'}</script>Some stuff</li>
-		<li><script type="data">{zoooo:'bar', bar:{test:'baz'}}</script>Some stuff</li>
-		<li><script type="data">{number:true, stuff:[2,8]}</script>Some stuff</li>
-	</ol>
-	
-	<script type="data">
-		test("execute script with type='data'", function() { 
-			ok( false, "Script tag with type='data' was executed!"); 
-		});
-	</script>
-	
-	<ol id="four">
-		<li data-foo="'bar'" data-bar="'baz'" data-arr="[1,2]">Some stuff</li>
-		<li data-test="'bar'" data-bar="'baz'">Some stuff</li>
-		<li data-zoooo="'bar'" data-bar="{test:'baz'}">Some stuff</li>
-		<li data-number="true" data-stuff="[2,8]">Some stuff</li>
-	</ol>
+  <div id="no_data"></div>
+  <div id="empty_data" data-empty=""></div>
+  <div id="single_data" data-single="single"></div>
+  <div id="multiple_data" data-one="1" data-two="2"></div>
+  <div id="camelized_data" data-foo-bar-baz="foo-bar-baz"></div>
 </div>
 
 <ol id="tests"></ol>
