@@ -9,27 +9,47 @@
  */
 
 
-(function($) {
+(function($, undefined) {
+  
+  var re_data = /^data\-(.+)$/;
+  
+  var convert = function(string){
+    return string ? eval("(" + string + ")") : string;
+  };
+  
+  var attributes = function(elem){
+    
+    var data = {};
+    
+    if (!elem || elem.nodeType !== 1) {
+      return data;
+    }
+
+    $.each(elem.attributes, function(index, attr){
+      if (re_data.test(attr.nodeName)){
+        data[attr.nodeName.match(re_data)[1]] = convert(attr.nodeValue);
+      }
+    });
+    
+    return data;
+  }
+  
   $.extend({
     metadata: {
-      convert: function(string){
-        return string ? eval("(" + string + ")") : string;
-      },
-    
-      get: function(element){
-        element = $(element);
-      
-        var script;
-      
+      get: function(elem){
+        var data = $(elem).data("metadata");
+
         // returned cached data if it already exists
-        var data = element.data("metadata");
         if (data) { return data; }
       
-        script = element.find("script[type='data']");
-        data = $.metadata.convert(script.html()) || {};
-        $.extend(data, $.metadata.convert(element.attr("data")));
+        data = $.extend(
+          {},
+          convert($(elem).find("script[type='data']").html()),
+          convert($(elem).attr("data")),
+          attributes(elem)
+        );
       
-        element.data("metadata", data);
+        $(elem).data("metadata", data);
         return data;
       }
     }

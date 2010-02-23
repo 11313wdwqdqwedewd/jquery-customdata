@@ -34,7 +34,7 @@
 				{test:'bar', bar:'baz'}
 			</script>
 		</li>
-		<li data="{zoooo:'bar', bar:{test:'baz'}}">
+		<li data-zoooo="'bar'" data="{bar:{test:'baz'}}">
 			<script type="data"></script>
 		</li>
 		<li data="{}">
@@ -58,12 +58,11 @@
 	</script>
 	
 	<ol id="four">
-		<li data="{foo:'bar', bar:'baz', arr:[1,2]}">Some stuff</li>
-		<li data="{test:'bar', bar:'baz'}">Some stuff</li>
-		<li data="{zoooo:'bar', bar:{test:'baz'}}">Some stuff</li>
-		<li data="{number:true, stuff:[2,8]}">Some stuff</li>
+		<li data-foo="'bar'" data-bar="'baz'" data-arr="[1,2]">Some stuff</li>
+		<li data-test="'bar'" data-bar="'baz'">Some stuff</li>
+		<li data-zoooo="'bar'" data-bar="{test:'baz'}">Some stuff</li>
+		<li data-number="true" data-stuff="[2,8]">Some stuff</li>
 	</ol>
-
 </div>
 
 <ol id="tests"></ol>
