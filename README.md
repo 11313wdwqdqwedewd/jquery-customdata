@@ -14,7 +14,7 @@ And later access the data attribute via jQuery:
     $("#delete_link").metadata(); // {method: "delete", remote: "true"}
     
     $("#delete_link").metadata("remote"); // "true"
-    $.metadata("#delete_link")("method"); // "delete"
+    $.metadata("#delete_link", "method"); // "delete"
 
 ### Credits ###
 
