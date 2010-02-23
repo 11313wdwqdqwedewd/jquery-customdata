@@ -1,54 +1,47 @@
 function testData(index) {
-	var data = jQuery.metadata.get(this);
-	switch(index) {
-	case 0:
-		ok( data.foo == "bar", "Check foo property" );
-		ok( data.bar == "baz", "Check baz property" );
-		ok( data.arr[0] == 1, "Check arr[0] property" );
-		ok( data.arr[1] == 2, "Check arr[1] property" );
-		break;
-	case 1:
-		ok( data.test == "bar", "Check test property" );
-		ok( data.bar == "baz", "Check bar property" );
-		break;
-	case 2:
-		ok( data.zoooo == "bar", "Check zoooo property" );
-		ok( data.bar.test == "baz", "Check bar.test property" );
-		break;
-	case 3:
-		ok( data.number, "Check number property" );
-		ok( data.stuff[0] == 2, "Check stuff[0] property" );
-		ok( data.stuff[1] == 8, "Check stuff[1] property" );
-		break;
-	default:
-		ok( false, ["Assertion failed on index ", index, ", with data ", data].join('') );
+	
+	var check = function(title, data){
+	  switch(index) {
+  	case 0:
+  		ok( data.foo == "bar", title + " Check foo property" );
+  		ok( data.bar == "baz", title + " Check baz property" );
+  		ok( data.arr[0] == 1, title + " Check arr[0] property" );
+  		ok( data.arr[1] == 2, title + " Check arr[1] property" );
+  		break;
+  	case 1:
+  		ok( data.test == "bar", title + " Check test property" );
+  		ok( data.bar == "baz", title + " Check bar property" );
+  		break;
+  	case 2:
+  		ok( data.zoooo == "bar", title + " Check zoooo property" );
+  		ok( data.bar.test == "baz", title + " Check bar.test property" );
+  		break;
+  	case 3:
+  		ok( data.number, title + " Check number property" );
+  		ok( data.stuff[0] == 2, title + " Check stuff[0] property" );
+  		ok( data.stuff[1] == 8, title + " Check stuff[1] property" );
+  		break;
+  	default:
+  		ok( false, ["Assertion failed on index ", index, ", with data ", data].join('') );
+  	}
 	}
+	
+	check(".metadata", jQuery.metadata.get(this));
+	check("$.metadata", jQuery(this).metadata());
 }
 
-// check if set can be intercepted without breaking metadata plugin
-var oldSet = jQuery.fn.set;
-jQuery.fn.set = function() {
-	ok( true, "set was interecepted" );
-	oldSet.apply(this, arguments);
-};
-
-//jQuery.meta.single = "";
-
 test("meta: type attr - from data attribute", function() {
-	expect(11);
-	jQuery.metadata.setType("attr", "data");
+	expect(22);
 	jQuery("#one li").each(testData);
 });
 
-test("meta: type class - from className", function() {
-	expect(11);
-	jQuery.metadata.setType( "class" );
+test("meta: children script element - get data mixed items", function() {
+	expect(22);
 	jQuery("#two li").each(testData);
 });
 
 test("meta: children script element - get data from child script element", function() {
-	expect(11);
-	jQuery.metadata.setType( "elem", "script" );
+	expect(22);
 	jQuery("#three li").each(testData);
 });
 
@@ -57,23 +50,7 @@ test("check if window doesn't break anything", function() {
 });
 
 test("meta: default with single data object", function() {
-	expect(11);
-	jQuery.metadata.setType("attr","data");
-	jQuery.metadata.defaults.single = "data";
+	expect(22);
 	jQuery("#four li").each(testData);
 });
 
-test("meta with select and class", function() {
-	expect(2);
-	jQuery.metadata.setType("class");
-	jQuery.metadata.single = "stuff";
-	var e = $('#meal').metadata();
-	ok( e, "data property" );
-	ok( e.required, "property on data property" );
-});
-
-test("try to add and remove classes on metadata elements", function() {
-	$("#two li").addClass("foobar").addClass("foo bar").removeClass("foobar");
-	ok( $("#two li").is(".foo"), 'Check class foo was added.' );
-	ok( $("#two li").is(".bar"), 'Check class bar was added.' );
-});
