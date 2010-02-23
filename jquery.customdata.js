@@ -1,5 +1,5 @@
 /*
- * Metadata - jQuery plugin for parsing metadata from elements
+ * CustomData - jQuery plugin for parsing custom "data-" attribues from elements.
  *
  * Copyright (c) 2009 Martin Kleppe <kleppe@ubilabs.net>
  *
@@ -41,25 +41,25 @@
   };
   
   $.extend({
-    metadata: function(elem, key){
-      var data = $(elem).data("metadata");
+    customdata: function(elem, key){
+      var data = $(elem).data("customdata");
       if (!data) {
         data = attributes(elem);
-        $(elem).data("metadata", data);
+        $(elem).data("customdata", data);
       }
       return key ? data[key] : data;
     }
   });
 
   /**
-   * Returns the metadata object for the first member of the jQuery object.
+   * Returns the customdata object for the first member of the jQuery object.
    *
-   * @name metadata
-   * @descr Returns element's metadata object
-   * @cat Plugins/Metadata
+   * @name customdata
+   * @descr Returns element's customdata object
+   * @cat Plugins/customdata
    */
-  $.fn.metadata = function(key){
-    return $.metadata(this[0], key);
+  $.fn.customdata = function(key){
+    return $.customdata(this[0], key);
   };
 
 })(jQuery);
