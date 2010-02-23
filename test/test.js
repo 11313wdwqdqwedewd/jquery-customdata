@@ -52,5 +52,11 @@
     ok(data === undefined, "Undefined attribute does not exists.");
     ok(!data, "Undefined attribute is falsy.");
   });
+  
+  test("Custom selector", function(){
+    var elems = $("#selector_test :customdata");
+    ok( elems.hasClass("match"), "Matched elements returned.");
+    ok( !elems.hasClass("no_match"), "Unmatched elements skipped.");
+  });
 
 })(jQuery);

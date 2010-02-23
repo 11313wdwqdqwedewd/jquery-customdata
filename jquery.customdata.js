@@ -61,5 +61,20 @@
   $.fn.customdata = function(key){
     return $.customdata(this[0], key);
   };
+  
+  
+  $.extend($.expr[':'], {
+    customdata: function(elem){      
+      if (elem && elem.nodeType === 1 && elem.attributes) {
+        for ( var i = 0, l = elem.attributes.length; i < l; i++ ) {
+          if (RE_DATA.test(elem.attributes[i].nodeName)){
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
+  });
 
 })(jQuery);
