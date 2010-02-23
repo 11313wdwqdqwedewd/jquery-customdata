@@ -32,7 +32,7 @@
     if (elem && elem.nodeType === 1) { 
       $.each(elem.attributes, function(index, attr){
         if (RE_DATA.test(attr.nodeName)){
-          key = attr.nodeName.match(RE_DATA)[1];
+          var key = attr.nodeName.match(RE_DATA)[1];
           data[camelize(key)] = attr.nodeValue;
         }
       });
