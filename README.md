@@ -33,7 +33,7 @@ Hyphenated names become camel-cased. For example, `data-foo-bar` becomes `fooBar
 
 To collect all HTML elements with custom data attributes, use the custom selector `:customdata`. If you want specific elements with specific data attributes, pass an argument `:customdata(key)`:
 
-    $("#content :customdata"); // all DOM elements with custom data
-    $("#content :customdata(remote)"); // onle elements mit "data-remote".
+    $("#content :customdata");          // all elements with custom data
+    $("#content :customdata(remote)");  // elements with "data-remote" attribute
 
 **Note:** All attributes on HTML elements in HTML documents get ASCII-lowercased automatically, so the restriction on ASCII uppercase letters doesn't affect such documents.
