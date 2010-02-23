@@ -52,29 +52,29 @@
   });
 
   /**
-   * Returns the customdata object for the first member of the jQuery object.
+   * Returns the custom data object for the first member of the jQuery object.
    *
    * @name customdata
    * @descr Returns element's customdata object
-   * @cat Plugins/customdata
+   * @cat Plugins/CustomData
    */
   $.fn.customdata = function(key){
     return $.customdata(this[0], key);
   };
   
-  
-  $.extend($.expr[':'], {
-    customdata: function(elem){      
-      if (elem && elem.nodeType === 1 && elem.attributes) {
-        for ( var i = 0, l = elem.attributes.length; i < l; i++ ) {
-          if (RE_DATA.test(elem.attributes[i].nodeName)){
-            return true;
-          }
+  $.expr[':'].customdata = function(elem, index, properties){
+    var argument = properties[3];
+    if (argument){ return $(elem).is("[data-" + argument + "]"); }
+    
+    if (elem && elem.nodeType === 1 && elem.attributes) {
+      for ( var i = 0, l = elem.attributes.length; i < l; i++ ) {
+        if (RE_DATA.test(elem.attributes[i].nodeName)){
+          return true;
         }
       }
-
-      return false;
     }
-  });
+
+    return false;
+  };
 
 })(jQuery);

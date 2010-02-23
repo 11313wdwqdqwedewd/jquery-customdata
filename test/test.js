@@ -59,4 +59,12 @@
     ok( !elems.hasClass("no_match"), "Unmatched elements skipped.");
   });
 
+  test("Custom selector with argument.", function(){
+    var elems = $("#selector_test :customdata(foo)");
+    ok( "bar" == elems.attr("data-foo"), "Element matches data attribute.");
+    elems = $("#selector_test :customdata(foo-bar)");
+    ok( "baz" == elems.attr("data-foo-bar"), "Element matches hypenized data attribute.");
+  });
+
+
 })(jQuery);
