@@ -12,7 +12,7 @@
   
   var RE_DATA = /^data\-(.+)$/;
   
-  function camelize(string) {
+  var camelize = function(string) {
     var parts = string.split('-'), len = parts.length;
     if (len == 1) { return parts[0]; }
 
@@ -25,8 +25,8 @@
     }
 
     return camelized;
-  }
-  
+  };
+    
   var attributes = function(elem){
     var data = {};
     if (elem && elem.nodeType === 1) { 
