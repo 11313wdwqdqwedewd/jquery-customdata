@@ -17,27 +17,27 @@
 
 <div id="main" style="display: none">
 	<ol id="one">
-		<li class="test test2" data="{foo:'bar', bar:'baz', arr:[1,2]}">Some stuff</li>
-		<li class="test test2" data="{test:'bar', bar:'baz'}">Some stuff</li>
-		<li class="test test2" data="{zoooo:'bar', bar:{test:'baz'}}">Some stuff</li>
-		<li class="test test2" data="{number:true, stuff:[2,8]}">Some stuff</li>
+		<li data="{foo:'bar', bar:'baz', arr:[1,2]}">Some stuff</li>
+		<li data="{test:'bar', bar:'baz'}">Some stuff</li>
+		<li data="{zoooo:'bar', bar:{test:'baz'}}">Some stuff</li>
+		<li data="{number:true, stuff:[2,8]}">Some stuff</li>
 	</ol>
 
 	<ol id="two">
-		<li class="test test2" data="{foo:'bar', bar:'baz'}">
+		<li data="{foo:'bar', bar:'baz'}">
 			<script type="data">
 				{foo:'not-foo', arr:[1,2]}
 			</script>
 		</li>
-		<li class="test test2" data="">
+		<li data="">
 			<script type="data">
 				{test:'bar', bar:'baz'}
 			</script>
 		</li>
-		<li class="test test2" data="{zoooo:'bar', bar:{test:'baz'}}">
+		<li data="{zoooo:'bar', bar:{test:'baz'}}">
 			<script type="data"></script>
 		</li>
-		<li class="test test2" data="{}">
+		<li data="{}">
 			<script type="data">
 				{number:true, stuff:[2,8]}
 			</script>
@@ -45,10 +45,10 @@
 	</ol>
 	
 	<ol id="three">
-		<li class="test test2"><script type="data">{foo:'bar', bar:'baz', arr:[1,2]}</script>Some stuff</li>
-		<li class="test test2"><script type="data">{test:'bar', bar:'baz'}</script>Some stuff</li>
-		<li class="test test2"><script type="data">{zoooo:'bar', bar:{test:'baz'}}</script>Some stuff</li>
-		<li class="test test2"><script type="data">{number:true, stuff:[2,8]}</script>Some stuff</li>
+		<li><script type="data">{foo:'bar', bar:'baz', arr:[1,2]}</script>Some stuff</li>
+		<li><script type="data">{test:'bar', bar:'baz'}</script>Some stuff</li>
+		<li><script type="data">{zoooo:'bar', bar:{test:'baz'}}</script>Some stuff</li>
+		<li><script type="data">{number:true, stuff:[2,8]}</script>Some stuff</li>
 	</ol>
 	
 	<script type="data">
@@ -58,10 +58,10 @@
 	</script>
 	
 	<ol id="four">
-		<li class="test test2" data="{foo:'bar', bar:'baz', arr:[1,2]}">Some stuff</li>
-		<li class="test test2" data="{test:'bar', bar:'baz'}">Some stuff</li>
-		<li class="test test2" data="{zoooo:'bar', bar:{test:'baz'}}">Some stuff</li>
-		<li class="test test2" data="{number:true, stuff:[2,8]}">Some stuff</li>
+		<li data="{foo:'bar', bar:'baz', arr:[1,2]}">Some stuff</li>
+		<li data="{test:'bar', bar:'baz'}">Some stuff</li>
+		<li data="{zoooo:'bar', bar:{test:'baz'}}">Some stuff</li>
+		<li data="{number:true, stuff:[2,8]}">Some stuff</li>
 	</ol>
 
 </div>
